@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class EventsEntity {
 
-    static readonly PowerUpPrefabComponent powerUpPrefabComponent = new PowerUpPrefabComponent();
+    public PowerUpPrefabComponent powerUpPrefab { get { return (PowerUpPrefabComponent)GetComponent(EventsComponentsLookup.PowerUpPrefab); } }
+    public bool hasPowerUpPrefab { get { return HasComponent(EventsComponentsLookup.PowerUpPrefab); } }
 
-    public bool isPowerUpPrefab {
-        get { return HasComponent(EventsComponentsLookup.PowerUpPrefab); }
-        set {
-            if (value != isPowerUpPrefab) {
-                var index = EventsComponentsLookup.PowerUpPrefab;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : powerUpPrefabComponent;
+    public void AddPowerUpPrefab(Core.PowerUp newValue) {
+        var index = EventsComponentsLookup.PowerUpPrefab;
+        var component = (PowerUpPrefabComponent)CreateComponent(index, typeof(PowerUpPrefabComponent));
+        component.Value = newValue;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplacePowerUpPrefab(Core.PowerUp newValue) {
+        var index = EventsComponentsLookup.PowerUpPrefab;
+        var component = (PowerUpPrefabComponent)CreateComponent(index, typeof(PowerUpPrefabComponent));
+        component.Value = newValue;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemovePowerUpPrefab() {
+        RemoveComponent(EventsComponentsLookup.PowerUpPrefab);
     }
 }
 

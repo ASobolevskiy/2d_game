@@ -10,18 +10,20 @@ public static class EventsComponentsLookup {
 
     public const int Enemy = 0;
     public const int EnemyPrefab = 1;
-    public const int Player = 2;
-    public const int PlayerPrefab = 3;
-    public const int PlayerSpawnRequested = 4;
-    public const int Position = 5;
-    public const int PowerUp = 6;
-    public const int PowerUpPrefab = 7;
+    public const int EnemySpawnRequested = 2;
+    public const int Player = 3;
+    public const int PlayerPrefab = 4;
+    public const int PlayerSpawnRequested = 5;
+    public const int Position = 6;
+    public const int PowerUp = 7;
+    public const int PowerUpPrefab = 8;
 
-    public const int TotalComponents = 8;
+    public const int TotalComponents = 9;
 
     public static readonly string[] componentNames = {
         "Enemy",
         "EnemyPrefab",
+        "EnemySpawnRequested",
         "Player",
         "PlayerPrefab",
         "PlayerSpawnRequested",
@@ -33,6 +35,7 @@ public static class EventsComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(EnemyComponent),
         typeof(EnemyPrefabComponent),
+        typeof(EnemySpawnRequestedComponent),
         typeof(PlayerComponent),
         typeof(PlayerPrefabComponent),
         typeof(PlayerSpawnRequestedComponent),

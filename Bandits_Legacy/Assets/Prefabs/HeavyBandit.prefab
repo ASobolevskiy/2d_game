@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 8595172128958091196}
   - component: {fileID: 912833763762927712}
   - component: {fileID: 8219178545256238535}
+  - component: {fileID: 9116217822506182111}
   m_Layer: 0
   m_Name: HeavyBandit
   m_TagString: Untagged
@@ -218,6 +219,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.85, y: 1.18}
   m_EdgeRadius: 0
+--- !u!114 &9116217822506182111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4311582158536663436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde913218c6746c1bc42868991685345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7708941477949715006
 GameObject:
   m_ObjectHideFlags: 0

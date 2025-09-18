@@ -8,27 +8,42 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Enemy = 0;
-    public const int Player = 1;
-    public const int Position = 2;
-    public const int PowerUp = 3;
-    public const int SceneView = 4;
+    public const int AbleToMove = 0;
+    public const int Direction = 1;
+    public const int Enemy = 2;
+    public const int FaceDirection = 3;
+    public const int Movable = 4;
+    public const int Player = 5;
+    public const int Position = 6;
+    public const int PowerUp = 7;
+    public const int SceneView = 8;
+    public const int Speed = 9;
 
-    public const int TotalComponents = 5;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
+        "AbleToMove",
+        "Direction",
         "Enemy",
+        "FaceDirection",
+        "Movable",
         "Player",
         "Position",
         "PowerUp",
-        "SceneView"
+        "SceneView",
+        "Speed"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AbleToMove),
+        typeof(DirectionComponent),
         typeof(EnemyComponent),
+        typeof(FaceDirectionComponent),
+        typeof(MovableComponent),
         typeof(PlayerComponent),
         typeof(PositionComponent),
         typeof(PowerUpComponent),
-        typeof(SceneViewComponent)
+        typeof(SceneViewComponent),
+        typeof(SpeedComponent)
     };
 }

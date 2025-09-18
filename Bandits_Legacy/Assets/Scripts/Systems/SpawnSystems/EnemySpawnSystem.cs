@@ -1,60 +1,53 @@
 using System.Collections.Generic;
 using Entitas;
 using Entitas.Unity;
-using Reflex.Attributes;
+using Reflex.Core;
 using UnityEngine;
-using Utils;
 
 namespace Systems
 {
-    public sealed class PlayerSpawnSystem : ReactiveSystem<EventsEntity>
+    public sealed class EnemySpawnSystem : ReactiveSystem<EventsEntity>
     {
-        [Inject]
-        private Transform _worldTransform;
-
         private readonly Contexts _contexts;
+        private readonly Transform _worldTransform;
         
-        public PlayerSpawnSystem(Contexts contexts) : base(contexts.events)
+        public EnemySpawnSystem(Contexts contexts, Container sceneContainer) : base(contexts.events)
         {
             _contexts = contexts;
+            _worldTransform = sceneContainer.Resolve<Transform>();
         }
 
         protected override ICollector<EventsEntity> GetTrigger(IContext<EventsEntity> context)
         {
             var matches = new[]
             {
-                EventsMatcher.PlayerSpawnRequested
+                EventsMatcher.EnemySpawnRequested
             };
             return context.CreateCollector(EventsMatcher.AllOf((matches)));
         }
 
         protected override bool Filter(EventsEntity entity)
         {
-            return entity.isPlayerSpawnRequested &&
+            return entity.isEnemySpawnRequested &&
                    entity.hasPosition &&
-                   entity.hasPlayerPrefab;
+                   entity.hasEnemyPrefab;
         }
 
         protected override void Execute(List<EventsEntity> entities)
         {
             foreach (var entity in entities)
             {
-                var prefab = entity.playerPrefab.Value;
+                var prefab = entity.enemyPrefab.Value;
                 var gameEntity = _contexts.game.CreateEntity();
                 gameEntity.AddPosition(entity.position.Value);
-                gameEntity.AddDirection(Vector2.zero);
-                gameEntity.AddSpeed(1);
-                gameEntity.isAbleToMove = true;
-                gameEntity.isMovable = true;
-                gameEntity.isPlayer = true;
-                gameEntity.AddFaceDirection(FaceDirectionEnum.Right);
-
+                gameEntity.isEnemy = true;
+                
                 var gameObject = Object.Instantiate(prefab.gameObject, gameEntity.position.Value, Quaternion.identity);
                 gameObject.transform.SetParent(_worldTransform);
                 gameObject.Link(gameEntity);
                 gameEntity.AddSceneView(gameObject);
                 entity.Destroy();
-            }   
+            }
         }
     }
 }

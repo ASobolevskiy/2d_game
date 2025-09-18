@@ -1,5 +1,6 @@
 using Entitas;
 using UnityEngine;
+using Utils;
 
 [Game, Events]
 public sealed class PlayerComponent : IComponent
@@ -25,4 +26,10 @@ public sealed class SceneViewComponent : IComponent
 public sealed class PositionComponent : IComponent
 {
     public Vector2 Value;
+}
+
+[Game]
+public sealed class FaceDirectionComponent : IComponent
+{
+    public FaceDirectionEnum Value;
 }

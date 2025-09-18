@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class EventsEntity {
 
-    static readonly EnemyPrefabComponent enemyPrefabComponent = new EnemyPrefabComponent();
+    public EnemyPrefabComponent enemyPrefab { get { return (EnemyPrefabComponent)GetComponent(EventsComponentsLookup.EnemyPrefab); } }
+    public bool hasEnemyPrefab { get { return HasComponent(EventsComponentsLookup.EnemyPrefab); } }
 
-    public bool isEnemyPrefab {
-        get { return HasComponent(EventsComponentsLookup.EnemyPrefab); }
-        set {
-            if (value != isEnemyPrefab) {
-                var index = EventsComponentsLookup.EnemyPrefab;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : enemyPrefabComponent;
+    public void AddEnemyPrefab(Core.Enemy newValue) {
+        var index = EventsComponentsLookup.EnemyPrefab;
+        var component = (EnemyPrefabComponent)CreateComponent(index, typeof(EnemyPrefabComponent));
+        component.Value = newValue;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceEnemyPrefab(Core.Enemy newValue) {
+        var index = EventsComponentsLookup.EnemyPrefab;
+        var component = (EnemyPrefabComponent)CreateComponent(index, typeof(EnemyPrefabComponent));
+        component.Value = newValue;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveEnemyPrefab() {
+        RemoveComponent(EventsComponentsLookup.EnemyPrefab);
     }
 }
 

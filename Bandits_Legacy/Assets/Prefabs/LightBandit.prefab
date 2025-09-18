@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8534125400887828744}
   - component: {fileID: 835597604471321502}
   - component: {fileID: 1811516879056714189}
+  - component: {fileID: 7321922730368011615}
   m_Layer: 0
   m_Name: LightBandit
   m_TagString: Untagged
@@ -108,6 +109,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.85, y: 1.18}
   m_EdgeRadius: 0
+--- !u!114 &7321922730368011615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252090089736165836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde913218c6746c1bc42868991685345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4505359049362028194
 GameObject:
   m_ObjectHideFlags: 0
