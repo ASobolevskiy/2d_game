@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class Enemy : MonoBehaviour
+    public sealed class Enemy : MonoBehaviour
     {
         
     }

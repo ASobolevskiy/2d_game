@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Core
 {
     [Serializable]
-    public class SpawnPoint
+    public sealed class SpawnPoint
     {
         [SerializeField]
         private Transform _coordinates;

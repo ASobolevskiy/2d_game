@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Entitas;
 using UnityEngine;
-using Utils;
 
-namespace Systems
+namespace Systems.Visual.Animation
 {
-    public class RenderDirectionSystem : ReactiveSystem<GameEntity>
+    public sealed class DeathAnimationSystem : ReactiveSystem<GameEntity>
     {
-        public RenderDirectionSystem(Contexts contexts) : base(contexts.game)
+        private static readonly int s_dead = Animator.StringToHash("Death");
+
+        public DeathAnimationSystem(Contexts contexts) : base(contexts.game)
         {
         }
 
@@ -16,24 +16,22 @@ namespace Systems
         {
             var matches = new[]
             {
-                GameMatcher.FaceDirection
+                GameMatcher.Dead
             };
             return context.CreateCollector(GameMatcher.AllOf(matches));
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasFaceDirection &&
-                   entity.hasSceneView;
+            return entity.isDead &&
+                   entity.hasAnimator;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var entity in entities)
             {
-                entity.sceneView.Value.transform.localScale = entity.faceDirection.Value == FaceDirectionEnum.Left
-                    ? new Vector3(1.0f, 1.0f, 1.0f)
-                    : new Vector3(-1.0f, 1.0f, 1.0f);
+                entity.animator.Value.SetTrigger(s_dead);
             }
         }
     }

@@ -22,3 +22,9 @@ public sealed class MovableComponent : IComponent
 public sealed class AbleToMove : IComponent
 {
 }
+
+[Game]
+public sealed class IsMovingComponent : IComponent
+{
+    public bool Value;
+}

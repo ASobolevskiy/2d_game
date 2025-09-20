@@ -164,7 +164,7 @@ Animator:
   m_GameObject: {fileID: 4505359049362028194}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b95265f99b6d90e438df1308a89c8bab, type: 2}
+  m_Controller: {fileID: 9100000, guid: c40235caf74da9a458eacfab99dd681e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -241,6 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2365417464584167}
   - component: {fileID: 1624095865839458112}
+  - component: {fileID: 5998548025358177123}
   m_Layer: 0
   m_Name: GroundSensor
   m_TagString: Untagged
@@ -309,3 +310,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6, y: 0.02}
   m_EdgeRadius: 0
+--- !u!114 &5998548025358177123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514464911553490618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ee5c9768f74d07964de787bfe5a741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using Core;
 using Entitas;
 using Entitas.Unity;
 using Reflex.Core;
 using UnityEngine;
+using Utils;
 
 namespace Systems
 {
@@ -39,13 +41,32 @@ namespace Systems
             {
                 var prefab = entity.enemyPrefab.Value;
                 var gameEntity = _contexts.game.CreateEntity();
+                
                 gameEntity.AddPosition(entity.position.Value);
-                gameEntity.isEnemy = true;
+                gameEntity.AddDirection(Vector2.zero);
+                gameEntity.AddSpeed(1);
+                gameEntity.isAbleToMove = true;
+                gameEntity.isMovable = true;
+                gameEntity.AddFaceDirection(FaceDirectionEnum.Left);
                 
                 var gameObject = Object.Instantiate(prefab.gameObject, gameEntity.position.Value, Quaternion.identity);
                 gameObject.transform.SetParent(_worldTransform);
                 gameObject.Link(gameEntity);
                 gameEntity.AddSceneView(gameObject);
+                if (gameEntity.sceneView.Value.TryGetComponent(out Rigidbody2D rb))
+                {
+                    gameEntity.AddRigidBody2D(rb);
+                }
+
+                if (gameEntity.sceneView.Value.transform.Find("GroundSensor").TryGetComponent(out GroundSensor sensor))
+                {
+                    gameEntity.AddGroundSensor(sensor);
+                }
+
+                if (gameEntity.sceneView.Value.transform.Find("Visual").TryGetComponent(out Animator animator))
+                {
+                    gameEntity.AddAnimator(animator);
+                }
                 entity.Destroy();
             }
         }

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ReflexInstallers
 {
     [Serializable]
-    public class SpawnInstaller : IInstaller
+    public sealed class SpawnInstaller : IInstaller
     {
         [SerializeField]
         private Transform _worldTransform;

@@ -8,42 +8,84 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int AbleToMove = 0;
-    public const int Direction = 1;
-    public const int Enemy = 2;
-    public const int FaceDirection = 3;
-    public const int Movable = 4;
-    public const int Player = 5;
-    public const int Position = 6;
-    public const int PowerUp = 7;
-    public const int SceneView = 8;
-    public const int Speed = 9;
+    public const int AbleToJump = 0;
+    public const int AbleToMove = 1;
+    public const int Animator = 2;
+    public const int AttackDelaying = 3;
+    public const int AttackDelayTimer = 4;
+    public const int AttackRequested = 5;
+    public const int Dead = 6;
+    public const int Direction = 7;
+    public const int Enemy = 8;
+    public const int FaceDirection = 9;
+    public const int Grounded = 10;
+    public const int GroundSensor = 11;
+    public const int HitPoints = 12;
+    public const int IsMoving = 13;
+    public const int JumpForce = 14;
+    public const int JumpRequested = 15;
+    public const int Movable = 16;
+    public const int Player = 17;
+    public const int Position = 18;
+    public const int PowerUp = 19;
+    public const int RigidBody2D = 20;
+    public const int SceneView = 21;
+    public const int Speed = 22;
+    public const int Weapon = 23;
 
-    public const int TotalComponents = 10;
+    public const int TotalComponents = 24;
 
     public static readonly string[] componentNames = {
+        "AbleToJump",
         "AbleToMove",
+        "Animator",
+        "AttackDelaying",
+        "AttackDelayTimer",
+        "AttackRequested",
+        "Dead",
         "Direction",
         "Enemy",
         "FaceDirection",
+        "Grounded",
+        "GroundSensor",
+        "HitPoints",
+        "IsMoving",
+        "JumpForce",
+        "JumpRequested",
         "Movable",
         "Player",
         "Position",
         "PowerUp",
+        "RigidBody2D",
         "SceneView",
-        "Speed"
+        "Speed",
+        "Weapon"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AbleToJumpComponent),
         typeof(AbleToMove),
+        typeof(AnimatorComponent),
+        typeof(AttackDelaying),
+        typeof(AttackDelayTimer),
+        typeof(AttackRequested),
+        typeof(DeadComponent),
         typeof(DirectionComponent),
         typeof(EnemyComponent),
         typeof(FaceDirectionComponent),
+        typeof(GroundedComponent),
+        typeof(GroundSensorComponent),
+        typeof(HitPointsComponent),
+        typeof(IsMovingComponent),
+        typeof(JumpForceComponent),
+        typeof(JumpRequestedComponent),
         typeof(MovableComponent),
         typeof(PlayerComponent),
         typeof(PositionComponent),
         typeof(PowerUpComponent),
+        typeof(RigidBody2DComponent),
         typeof(SceneViewComponent),
-        typeof(SpeedComponent)
+        typeof(SpeedComponent),
+        typeof(WeaponComponent)
     };
 }

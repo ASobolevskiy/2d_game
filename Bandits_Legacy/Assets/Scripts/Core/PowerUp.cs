@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class PowerUp : MonoBehaviour
+    public sealed class PowerUp : MonoBehaviour
     {
         
     }

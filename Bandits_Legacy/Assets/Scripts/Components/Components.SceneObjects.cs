@@ -1,3 +1,4 @@
+using Core;
 using Entitas;
 using UnityEngine;
 using Utils;
@@ -32,4 +33,16 @@ public sealed class PositionComponent : IComponent
 public sealed class FaceDirectionComponent : IComponent
 {
     public FaceDirectionEnum Value;
+}
+
+[Game]
+public sealed class RigidBody2DComponent : IComponent
+{
+    public Rigidbody2D Value;
+}
+
+[Game]
+public sealed class GroundSensorComponent : IComponent
+{
+    public GroundSensor Value;
 }
