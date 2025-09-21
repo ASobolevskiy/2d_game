@@ -16,8 +16,12 @@ namespace Systems.Input
                 GameMatcher.SceneView,
                 GameMatcher.Weapon
             };
+            var exclude = new[]
+            {
+                GameMatcher.Dead
+            };
             
-            _playerGroup = contexts.game.GetGroup(GameMatcher.AllOf(matches));
+            _playerGroup = contexts.game.GetGroup(GameMatcher.AllOf(matches).NoneOf(exclude));
         }
 
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)

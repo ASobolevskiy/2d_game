@@ -10,3 +10,9 @@ public sealed class HitPointsComponent : IComponent
 public sealed class DeadComponent : IComponent
 {
 }
+
+[Game]
+public sealed class TakeDamageComponent : IComponent
+{
+    public int Amount;
+}

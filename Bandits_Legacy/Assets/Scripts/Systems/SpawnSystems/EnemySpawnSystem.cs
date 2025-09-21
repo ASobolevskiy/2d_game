@@ -48,6 +48,7 @@ namespace Systems
                 gameEntity.isAbleToMove = true;
                 gameEntity.isMovable = true;
                 gameEntity.AddFaceDirection(FaceDirectionEnum.Left);
+                gameEntity.AddHitPoints(2);
                 
                 var gameObject = Object.Instantiate(prefab.gameObject, gameEntity.position.Value, Quaternion.identity);
                 gameObject.transform.SetParent(_worldTransform);
@@ -67,6 +68,21 @@ namespace Systems
                 {
                     gameEntity.AddAnimator(animator);
                 }
+                
+                if (gameEntity.sceneView.Value.transform.Find("Visual").TryGetComponent(out AnimationEventHandler animHandler))
+                {
+                    animHandler.SetGameEntity(gameEntity);
+                }
+
+                gameEntity.isAIAgent = true;
+                gameEntity.isPatrolState = true;
+                var position = gameObject.transform.position;
+                var patrolPoints = new List<Vector2>
+                {
+                    new (position.x - 2, position.y),
+                    new (position.x + 2, position.y)
+                };
+                gameEntity.AddPatrolData(0, patrolPoints);
                 entity.Destroy();
             }
         }

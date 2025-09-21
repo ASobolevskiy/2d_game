@@ -76,6 +76,11 @@ namespace Systems
                 {
                     gameEntity.AddWeapon(transform, 1, 2f);
                 }
+                
+                if (gameEntity.sceneView.Value.transform.Find("Visual").TryGetComponent(out AnimationEventHandler animHandler))
+                {
+                    animHandler.SetGameEntity(gameEntity);
+                }
 
                 gameEntity.isAttackDelaying = false;
                 gameEntity.AddHitPoints(10);

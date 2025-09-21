@@ -5,6 +5,7 @@ using Reflex.Core;
 using Reflex.Extensions;
 using Reflex.Injectors;
 using Systems;
+using Systems.AI;
 using Systems.Combat;
 using Systems.Health;
 using Systems.Input;
@@ -26,6 +27,7 @@ namespace Controllers
         private Entitas.Systems _inputSystems;
         private Entitas.Systems _visualSystems;
         private Entitas.Systems _combatSystems;
+        private Entitas.Systems _aiSystems;
         
         private bool _isGameOver;
 
@@ -45,12 +47,14 @@ namespace Controllers
             _eventSystems = CreateEventsSystems(_contexts);
             _visualSystems = CreateVisualSystems(_contexts);
             _combatSystems = CreateCombatSystems(_contexts);
+            _aiSystems = CreateAISystems(_contexts);
             
             _gameSystems.Initialize();
             _inputSystems.Initialize();
             _eventSystems.Initialize();
             _visualSystems.Initialize();
             _combatSystems.Initialize();
+            _aiSystems.Initialize();
 
             var enemiesPrefabs = _sceneScopeContainer.Resolve<List<Enemy>>();
             //TODO move to spawner 
@@ -92,6 +96,7 @@ namespace Controllers
             _eventSystems.Execute();
             _visualSystems.Execute();
             _combatSystems.Execute();
+            _aiSystems.Execute();
         }
 
         private void OnDestroy()
@@ -101,6 +106,7 @@ namespace Controllers
             _eventSystems.Cleanup();
             _visualSystems.Cleanup();
             _combatSystems.Cleanup();
+            _aiSystems.Cleanup();
         }
 
         private Entitas.Systems CreateGameSystems(Contexts contexts)
@@ -110,7 +116,8 @@ namespace Controllers
                 .Add(new JumpSystem(contexts))
                 .Add(new RenderDirectionSystem(contexts))
                 .Add(new ReadGroundSensorSystem(contexts))
-                .Add(new HealthSystem(contexts));
+                .Add(new HealthSystem(contexts))
+                .Add(new TakeDamageSystem(contexts));
         }
         
         private Entitas.Systems CreateInputSystems(Contexts contexts)
@@ -137,14 +144,22 @@ namespace Controllers
                 .Add(new MovingAnimationSystem(contexts))
                 .Add(new JumpAnimationSystem(contexts))
                 .Add(new AttackAnimationSystem(contexts))
-                .Add(new DeathAnimationSystem(contexts));
+                .Add(new DeathAnimationSystem(contexts))
+                .Add(new HitTakenAnimationSystem(contexts));
         }
 
         private Entitas.Systems CreateCombatSystems(Contexts contexts)
         {
             return new Feature("Combat systems")
                 .Add(new AttackSystem(contexts))
-                .Add(new AttackDelaySystem(contexts));
+                .Add(new AttackDelaySystem(contexts))
+                .Add(new CheckCollisionsSystem(contexts));
+        }
+
+        private Entitas.Systems CreateAISystems(Contexts contexts)
+        {
+            return new Feature("AI Systems")
+                .Add(new AIPatrolSystem(contexts));
         }
     }
 }

@@ -10,37 +10,46 @@ public static class GameComponentsLookup {
 
     public const int AbleToJump = 0;
     public const int AbleToMove = 1;
-    public const int Animator = 2;
-    public const int AttackDelaying = 3;
-    public const int AttackDelayTimer = 4;
-    public const int AttackRequested = 5;
-    public const int Dead = 6;
-    public const int Direction = 7;
-    public const int Enemy = 8;
-    public const int FaceDirection = 9;
-    public const int Grounded = 10;
-    public const int GroundSensor = 11;
-    public const int HitPoints = 12;
-    public const int IsMoving = 13;
-    public const int JumpForce = 14;
-    public const int JumpRequested = 15;
-    public const int Movable = 16;
-    public const int Player = 17;
-    public const int Position = 18;
-    public const int PowerUp = 19;
-    public const int RigidBody2D = 20;
-    public const int SceneView = 21;
-    public const int Speed = 22;
-    public const int Weapon = 23;
+    public const int AIAgent = 2;
+    public const int Animator = 3;
+    public const int AttackCollisionCheck = 4;
+    public const int AttackDelaying = 5;
+    public const int AttackDelayTimer = 6;
+    public const int Attacking = 7;
+    public const int AttackRequested = 8;
+    public const int Dead = 9;
+    public const int Direction = 10;
+    public const int Enemy = 11;
+    public const int FaceDirection = 12;
+    public const int Grounded = 13;
+    public const int GroundSensor = 14;
+    public const int HitPoints = 15;
+    public const int IsMoving = 16;
+    public const int JumpForce = 17;
+    public const int JumpRequested = 18;
+    public const int Movable = 19;
+    public const int PatrolData = 20;
+    public const int PatrolState = 21;
+    public const int Player = 22;
+    public const int Position = 23;
+    public const int PowerUp = 24;
+    public const int RigidBody2D = 25;
+    public const int SceneView = 26;
+    public const int Speed = 27;
+    public const int TakeDamage = 28;
+    public const int Weapon = 29;
 
-    public const int TotalComponents = 24;
+    public const int TotalComponents = 30;
 
     public static readonly string[] componentNames = {
         "AbleToJump",
         "AbleToMove",
+        "AIAgent",
         "Animator",
+        "AttackCollisionCheck",
         "AttackDelaying",
         "AttackDelayTimer",
+        "Attacking",
         "AttackRequested",
         "Dead",
         "Direction",
@@ -53,21 +62,27 @@ public static class GameComponentsLookup {
         "JumpForce",
         "JumpRequested",
         "Movable",
+        "PatrolData",
+        "PatrolState",
         "Player",
         "Position",
         "PowerUp",
         "RigidBody2D",
         "SceneView",
         "Speed",
+        "TakeDamage",
         "Weapon"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AbleToJumpComponent),
         typeof(AbleToMove),
+        typeof(AIAgentComponent),
         typeof(AnimatorComponent),
+        typeof(AttackCollisionCheckComponent),
         typeof(AttackDelaying),
         typeof(AttackDelayTimer),
+        typeof(AttackingComponent),
         typeof(AttackRequested),
         typeof(DeadComponent),
         typeof(DirectionComponent),
@@ -80,12 +95,15 @@ public static class GameComponentsLookup {
         typeof(JumpForceComponent),
         typeof(JumpRequestedComponent),
         typeof(MovableComponent),
+        typeof(PatrolData),
+        typeof(PatrolStateComponent),
         typeof(PlayerComponent),
         typeof(PositionComponent),
         typeof(PowerUpComponent),
         typeof(RigidBody2DComponent),
         typeof(SceneViewComponent),
         typeof(SpeedComponent),
+        typeof(TakeDamageComponent),
         typeof(WeaponComponent)
     };
 }

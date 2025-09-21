@@ -14,11 +14,6 @@ public sealed class WeaponComponent : IComponent
     public float Delay;
 }
 
-// [Game]
-// public sealed class ReadyToAttackComponent : IComponent
-// {
-// }
-
 [Game]
 public sealed class AttackDelaying : IComponent
 {
@@ -28,4 +23,15 @@ public sealed class AttackDelaying : IComponent
 public sealed class AttackDelayTimer : IComponent
 {
     public float Value;
+}
+
+[Game]
+public sealed class AttackingComponent : IComponent
+{
+    public bool IsAttacking;
+}
+
+[Game]
+public sealed class AttackCollisionCheckComponent : IComponent
+{
 }

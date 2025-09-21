@@ -13,7 +13,12 @@ namespace Systems.Combat
                 GameMatcher.Weapon,
                 GameMatcher.AttackRequested
             };
-            _attackers = contexts.game.GetGroup(GameMatcher.AllOf(matches).NoneOf(GameMatcher.Dead));
+            var excludes = new[]
+            {
+                GameMatcher.Attacking,
+                GameMatcher.Dead
+            };
+            _attackers = contexts.game.GetGroup(GameMatcher.AllOf(matches).NoneOf(excludes));
         }
 
         public void Execute()
@@ -22,8 +27,8 @@ namespace Systems.Combat
             {
                 if(!entity.hasWeapon || !entity.isAttackRequested || entity.isAttackDelaying)
                     continue;
-                //TODO find collisions and hit them
                 entity.isAttackRequested = false;
+                entity.AddAttacking(true);
                 entity.isAttackDelaying = true;
                 entity.ReplaceAttackDelayTimer(entity.weapon.Delay);
             }
