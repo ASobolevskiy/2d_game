@@ -12,6 +12,7 @@ public sealed class WeaponComponent : IComponent
     public Transform AttackPoint;
     public int Damage;
     public float Delay;
+    public float Range;
 }
 
 [Game]

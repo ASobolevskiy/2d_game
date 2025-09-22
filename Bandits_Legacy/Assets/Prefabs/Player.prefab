@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 835597604471321502}
   - component: {fileID: 1811516879056714189}
   - component: {fileID: 4394983435679489173}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 4899992864789532168}
   - component: {fileID: 2829329126744353560}
   - component: {fileID: 7248875177558054079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 64089646106043268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 5221155757626331125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.439, y: 0.855, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 2365417464584167}
   - component: {fileID: 1624095865839458112}
   - component: {fileID: 1486091691933990204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

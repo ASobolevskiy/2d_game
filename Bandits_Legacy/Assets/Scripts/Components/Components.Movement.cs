@@ -14,6 +14,17 @@ public sealed class SpeedComponent : IComponent
 }
 
 [Game]
+public sealed class ChasingSpeedComponent : IComponent
+{
+    public float Value;
+}
+
+public sealed class PatrollingSpeedComponent : IComponent
+{
+    public float Value;
+}
+
+[Game]
 public sealed class MovableComponent : IComponent
 {
 }

@@ -13,6 +13,7 @@ namespace Systems.AI
             {
                 GameMatcher.AIAgent,
                 GameMatcher.PatrolState,
+                GameMatcher.PatrolData,
                 GameMatcher.SceneView
             }).NoneOf(GameMatcher.Dead));
         }
@@ -21,6 +22,8 @@ namespace Systems.AI
         {
             foreach (var entity in _patrollingAiAgents.GetEntities())
             {
+                if(!entity.hasSpeed)
+                    entity.AddSpeed(entity.patrollingSpeed.Value);
                 var patrolPoints = entity.patrolData.PatrolPoints;
                 var currentPosition = (Vector2)entity.sceneView.Value.transform.position;
                 var desiredPosition = patrolPoints[entity.patrolData.CurrentTargetIndex];

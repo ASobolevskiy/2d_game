@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8662925619950756812}
   - component: {fileID: 6331214623212824693}
   - component: {fileID: 735654280066462340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 912833763762927712}
   - component: {fileID: 8219178545256238535}
   - component: {fileID: 9116217822506182111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeavyBandit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,7 @@ Transform:
   m_Children:
   - {fileID: 994101359551482144}
   - {fileID: 246114343617824745}
+  - {fileID: 6002148762741116254}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &912833763762927712
@@ -244,6 +245,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde913218c6746c1bc42868991685345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6631852271801921682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6002148762741116254}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6002148762741116254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631852271801921682}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8595172128958091196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7708941477949715006
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +287,7 @@ GameObject:
   - component: {fileID: 246114343617824745}
   - component: {fileID: 4503440684322643138}
   - component: {fileID: 2783498766297555121}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

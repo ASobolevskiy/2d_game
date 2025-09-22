@@ -6,6 +6,7 @@ namespace Systems.Combat
     public sealed class AttackDelaySystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _delayers;
+        private readonly Contexts _contexts;
 
         public AttackDelaySystem(Contexts contexts)
         {

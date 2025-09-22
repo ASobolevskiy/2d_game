@@ -40,16 +40,12 @@ namespace Systems.Movement
                 {
                     case > 0:
                         movable.ReplaceFaceDirection(FaceDirectionEnum.Right);
-                        movable.ReplaceIsMoving(true);
                         break;
                     case < 0:
                         movable.ReplaceFaceDirection(FaceDirectionEnum.Left);
-                        movable.ReplaceIsMoving(true);
-                        break;
-                    default:
-                        movable.ReplaceIsMoving(false);
                         break;
                 }
+                movable.ReplaceIsMoving(rb.linearVelocity.x != 0);
                 movable.ReplacePosition(movable.sceneView.Value.transform.position);
             }
         }

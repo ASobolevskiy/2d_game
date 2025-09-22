@@ -113,6 +113,7 @@ namespace Controllers
         {
             return new Feature("Game Systems")
                 .Add(new MovementSystem(contexts))
+                .Add(new UnableToMoveSystem(contexts))
                 .Add(new JumpSystem(contexts))
                 .Add(new RenderDirectionSystem(contexts))
                 .Add(new ReadGroundSensorSystem(contexts))
@@ -159,7 +160,13 @@ namespace Controllers
         private Entitas.Systems CreateAISystems(Contexts contexts)
         {
             return new Feature("AI Systems")
-                .Add(new AIPatrolSystem(contexts));
+                .Add(new AIPatrolSystem(contexts))
+                .Add(new AISightSystem(contexts))
+                .Add(new AIReactToEnemySightedSystem(contexts))
+                .Add(new AIIdleSystem(contexts))
+                .Add(new AIChaseSystem(contexts))
+                .Add(new AIAttackSystem(contexts))
+                .Add(new AIPeaceSystem(contexts));
         }
     }
 }

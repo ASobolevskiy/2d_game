@@ -44,7 +44,8 @@ namespace Systems
                 
                 gameEntity.AddPosition(entity.position.Value);
                 gameEntity.AddDirection(Vector2.zero);
-                gameEntity.AddSpeed(1);
+                gameEntity.AddPatrollingSpeed(1);
+                gameEntity.AddChasingSpeed(2);
                 gameEntity.isAbleToMove = true;
                 gameEntity.isMovable = true;
                 gameEntity.AddFaceDirection(FaceDirectionEnum.Left);
@@ -83,6 +84,15 @@ namespace Systems
                     new (position.x + 2, position.y)
                 };
                 gameEntity.AddPatrolData(0, patrolPoints);
+                gameEntity.AddSightDistance(2f);
+                gameEntity.AddIdleStateTurnAroundTimer(2);
+                gameEntity.isSearchingForEnemy = true;
+                
+                if (gameEntity.sceneView.Value.transform.Find("AttackPoint").TryGetComponent(out Transform transform))
+                {
+                    gameEntity.AddWeapon(transform, 1,3f, 0.5f);
+                }
+                gameEntity.AddPeaceTimer(gameEntity.weapon.Delay);
                 entity.Destroy();
             }
         }

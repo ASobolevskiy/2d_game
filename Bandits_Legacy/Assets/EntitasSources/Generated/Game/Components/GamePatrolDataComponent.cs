@@ -8,12 +8,12 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public PatrolData patrolData { get { return (PatrolData)GetComponent(GameComponentsLookup.PatrolData); } }
+    public PatrolDataComponent patrolData { get { return (PatrolDataComponent)GetComponent(GameComponentsLookup.PatrolData); } }
     public bool hasPatrolData { get { return HasComponent(GameComponentsLookup.PatrolData); } }
 
     public void AddPatrolData(int newCurrentTargetIndex, System.Collections.Generic.List<UnityEngine.Vector2> newPatrolPoints) {
         var index = GameComponentsLookup.PatrolData;
-        var component = (PatrolData)CreateComponent(index, typeof(PatrolData));
+        var component = (PatrolDataComponent)CreateComponent(index, typeof(PatrolDataComponent));
         component.CurrentTargetIndex = newCurrentTargetIndex;
         component.PatrolPoints = newPatrolPoints;
         AddComponent(index, component);
@@ -21,7 +21,7 @@ public partial class GameEntity {
 
     public void ReplacePatrolData(int newCurrentTargetIndex, System.Collections.Generic.List<UnityEngine.Vector2> newPatrolPoints) {
         var index = GameComponentsLookup.PatrolData;
-        var component = (PatrolData)CreateComponent(index, typeof(PatrolData));
+        var component = (PatrolDataComponent)CreateComponent(index, typeof(PatrolDataComponent));
         component.CurrentTargetIndex = newCurrentTargetIndex;
         component.PatrolPoints = newPatrolPoints;
         ReplaceComponent(index, component);

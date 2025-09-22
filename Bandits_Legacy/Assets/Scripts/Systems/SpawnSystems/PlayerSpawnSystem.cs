@@ -45,12 +45,12 @@ namespace Systems
                 
                 gameEntity.AddPosition(entity.position.Value);
                 gameEntity.AddDirection(Vector2.zero);
-                gameEntity.AddSpeed(1);
+                gameEntity.AddSpeed(3);
                 gameEntity.isAbleToMove = true;
                 gameEntity.isMovable = true;
                 gameEntity.isPlayer = true;
                 gameEntity.AddFaceDirection(FaceDirectionEnum.Right);
-                gameEntity.AddJumpForce(4);
+                gameEntity.AddJumpForce(5);
                 gameEntity.isAbleToJump = true;
 
                 var gameObject = Object.Instantiate(prefab.gameObject, gameEntity.position.Value, Quaternion.identity);
@@ -74,7 +74,7 @@ namespace Systems
 
                 if (gameEntity.sceneView.Value.transform.Find("AttackPoint").TryGetComponent(out Transform transform))
                 {
-                    gameEntity.AddWeapon(transform, 1, 2f);
+                    gameEntity.AddWeapon(transform, 1,1f, 0.5f);
                 }
                 
                 if (gameEntity.sceneView.Value.transform.Find("Visual").TryGetComponent(out AnimationEventHandler animHandler))

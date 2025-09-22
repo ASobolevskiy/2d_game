@@ -30,7 +30,7 @@ namespace Systems.Combat
                 var weapon = entity.weapon;
                 var attackPoint = weapon.AttackPoint;
                 var colliders = new List<Collider2D>();
-                Physics2D.OverlapCircle(attackPoint.position, 1, new ContactFilter2D(), colliders);
+                Physics2D.OverlapCircle(attackPoint.position, weapon.Range, new ContactFilter2D(), colliders);
                 if (colliders.Count != 0)
                 {
                     foreach (var collider in colliders)

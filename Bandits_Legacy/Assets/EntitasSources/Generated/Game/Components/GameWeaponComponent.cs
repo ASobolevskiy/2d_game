@@ -11,21 +11,23 @@ public partial class GameEntity {
     public WeaponComponent weapon { get { return (WeaponComponent)GetComponent(GameComponentsLookup.Weapon); } }
     public bool hasWeapon { get { return HasComponent(GameComponentsLookup.Weapon); } }
 
-    public void AddWeapon(UnityEngine.Transform newAttackPoint, int newDamage, float newDelay) {
+    public void AddWeapon(UnityEngine.Transform newAttackPoint, int newDamage, float newDelay, float newRange) {
         var index = GameComponentsLookup.Weapon;
         var component = (WeaponComponent)CreateComponent(index, typeof(WeaponComponent));
         component.AttackPoint = newAttackPoint;
         component.Damage = newDamage;
         component.Delay = newDelay;
+        component.Range = newRange;
         AddComponent(index, component);
     }
 
-    public void ReplaceWeapon(UnityEngine.Transform newAttackPoint, int newDamage, float newDelay) {
+    public void ReplaceWeapon(UnityEngine.Transform newAttackPoint, int newDamage, float newDelay, float newRange) {
         var index = GameComponentsLookup.Weapon;
         var component = (WeaponComponent)CreateComponent(index, typeof(WeaponComponent));
         component.AttackPoint = newAttackPoint;
         component.Damage = newDamage;
         component.Delay = newDelay;
+        component.Range = newRange;
         ReplaceComponent(index, component);
     }
 
