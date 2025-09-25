@@ -75,6 +75,7 @@ namespace Systems
                     animHandler.SetGameEntity(gameEntity);
                 }
 
+                gameEntity.isEnemy = true;
                 gameEntity.isAIAgent = true;
                 gameEntity.isPatrolState = true;
                 var position = gameObject.transform.position;

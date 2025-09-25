@@ -20,38 +20,44 @@ public static class GameComponentsLookup {
     public const int AttackState = 9;
     public const int ChaseState = 10;
     public const int ChasingSpeed = 11;
-    public const int CurrentPeaceTimer = 12;
-    public const int CurrentTurnAroundTimer = 13;
-    public const int Dead = 14;
-    public const int Direction = 15;
-    public const int Enemy = 16;
-    public const int EnemySighted = 17;
-    public const int FaceDirection = 18;
-    public const int Grounded = 19;
-    public const int GroundSensor = 20;
-    public const int HitPoints = 21;
-    public const int IdleState = 22;
-    public const int IdleStateTurnAroundTimer = 23;
-    public const int IsMoving = 24;
-    public const int JumpForce = 25;
-    public const int JumpRequested = 26;
-    public const int Movable = 27;
-    public const int PatrolData = 28;
-    public const int PatrollingSpeed = 29;
-    public const int PatrolState = 30;
-    public const int PeaceTimer = 31;
-    public const int Player = 32;
-    public const int Position = 33;
-    public const int PowerUp = 34;
-    public const int RigidBody2D = 35;
-    public const int SceneView = 36;
-    public const int SearchingForEnemy = 37;
-    public const int SightDistance = 38;
-    public const int Speed = 39;
-    public const int TakeDamage = 40;
-    public const int Weapon = 41;
+    public const int Collectible = 12;
+    public const int CollectibleTriggerEntered = 13;
+    public const int CollectibleType = 14;
+    public const int CollectibleValue = 15;
+    public const int CurrentPeaceTimer = 16;
+    public const int CurrentTurnAroundTimer = 17;
+    public const int Dead = 18;
+    public const int Direction = 19;
+    public const int Enemy = 20;
+    public const int EnemySighted = 21;
+    public const int FaceDirection = 22;
+    public const int Grounded = 23;
+    public const int GroundSensor = 24;
+    public const int HealDamage = 25;
+    public const int HitPoints = 26;
+    public const int IdleState = 27;
+    public const int IdleStateTurnAroundTimer = 28;
+    public const int IsMoving = 29;
+    public const int JumpForce = 30;
+    public const int JumpRequested = 31;
+    public const int MarkedToDestroy = 32;
+    public const int MaxHitpoints = 33;
+    public const int Movable = 34;
+    public const int PatrolData = 35;
+    public const int PatrollingSpeed = 36;
+    public const int PatrolState = 37;
+    public const int PeaceTimer = 38;
+    public const int Player = 39;
+    public const int Position = 40;
+    public const int RigidBody2D = 41;
+    public const int SceneView = 42;
+    public const int SearchingForEnemy = 43;
+    public const int SightDistance = 44;
+    public const int Speed = 45;
+    public const int TakeDamage = 46;
+    public const int Weapon = 47;
 
-    public const int TotalComponents = 42;
+    public const int TotalComponents = 48;
 
     public static readonly string[] componentNames = {
         "AbleToJump",
@@ -66,6 +72,10 @@ public static class GameComponentsLookup {
         "AttackState",
         "ChaseState",
         "ChasingSpeed",
+        "Collectible",
+        "CollectibleTriggerEntered",
+        "CollectibleType",
+        "CollectibleValue",
         "CurrentPeaceTimer",
         "CurrentTurnAroundTimer",
         "Dead",
@@ -75,12 +85,15 @@ public static class GameComponentsLookup {
         "FaceDirection",
         "Grounded",
         "GroundSensor",
+        "HealDamage",
         "HitPoints",
         "IdleState",
         "IdleStateTurnAroundTimer",
         "IsMoving",
         "JumpForce",
         "JumpRequested",
+        "MarkedToDestroy",
+        "MaxHitpoints",
         "Movable",
         "PatrolData",
         "PatrollingSpeed",
@@ -88,7 +101,6 @@ public static class GameComponentsLookup {
         "PeaceTimer",
         "Player",
         "Position",
-        "PowerUp",
         "RigidBody2D",
         "SceneView",
         "SearchingForEnemy",
@@ -111,6 +123,10 @@ public static class GameComponentsLookup {
         typeof(AttackStateComponent),
         typeof(ChaseStateComponent),
         typeof(ChasingSpeedComponent),
+        typeof(CollectibleComponent),
+        typeof(CollectibleTriggerEntered),
+        typeof(CollectibleTypeComponent),
+        typeof(CollectibleValueComponent),
         typeof(CurrentPeaceTimerComponent),
         typeof(CurrentTurnAroundTimerComponent),
         typeof(DeadComponent),
@@ -120,12 +136,15 @@ public static class GameComponentsLookup {
         typeof(FaceDirectionComponent),
         typeof(GroundedComponent),
         typeof(GroundSensorComponent),
+        typeof(HealDamageComponent),
         typeof(HitPointsComponent),
         typeof(IdleStateComponent),
         typeof(IdleStateTurnAroundTimerComponent),
         typeof(IsMovingComponent),
         typeof(JumpForceComponent),
         typeof(JumpRequestedComponent),
+        typeof(MarkedToDestroy),
+        typeof(MaxHitpointsComponent),
         typeof(MovableComponent),
         typeof(PatrolDataComponent),
         typeof(PatrollingSpeedComponent),
@@ -133,7 +152,6 @@ public static class GameComponentsLookup {
         typeof(PeaceTimerComponent),
         typeof(PlayerComponent),
         typeof(PositionComponent),
-        typeof(PowerUpComponent),
         typeof(RigidBody2DComponent),
         typeof(SceneViewComponent),
         typeof(SearchingForEnemy),

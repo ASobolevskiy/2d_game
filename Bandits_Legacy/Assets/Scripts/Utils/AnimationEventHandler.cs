@@ -31,13 +31,8 @@ namespace Utils
                         _gameEntity.RemoveAttacking();
                     break;
                 case "DeathComplete":
-                    if (_gameEntity is { isDead: true })
-                    {
-                        var go = _gameEntity.sceneView.Value;
-                        go.Unlink();
-                        go.DestroyGameObject();
-                        _gameEntity.Destroy();
-                    }
+                    if (_gameEntity is { isDead: true, isPlayer: false }) 
+                        _gameEntity.isMarkedToDestroy = true;
                     break;
                 default:
                     return;

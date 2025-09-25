@@ -6,6 +6,7 @@ using Reflex.Extensions;
 using Reflex.Injectors;
 using Systems;
 using Systems.AI;
+using Systems.Collectibles;
 using Systems.Combat;
 using Systems.Health;
 using Systems.Input;
@@ -28,6 +29,7 @@ namespace Controllers
         private Entitas.Systems _visualSystems;
         private Entitas.Systems _combatSystems;
         private Entitas.Systems _aiSystems;
+        private Entitas.Systems _collectibleSystems;
         
         private bool _isGameOver;
 
@@ -48,6 +50,7 @@ namespace Controllers
             _visualSystems = CreateVisualSystems(_contexts);
             _combatSystems = CreateCombatSystems(_contexts);
             _aiSystems = CreateAISystems(_contexts);
+            _collectibleSystems = CreateCollectiblesSystems(_contexts);
             
             _gameSystems.Initialize();
             _inputSystems.Initialize();
@@ -55,6 +58,7 @@ namespace Controllers
             _visualSystems.Initialize();
             _combatSystems.Initialize();
             _aiSystems.Initialize();
+            _collectibleSystems.Initialize();
 
             var enemiesPrefabs = _sceneScopeContainer.Resolve<List<Enemy>>();
             //TODO move to spawner 
@@ -83,7 +87,7 @@ namespace Controllers
 
         private Enemy GetRandomEnemyPrefab(List<Enemy> prefabs)
         {
-            var index = Random.Range(0, prefabs.Count - 1);
+            var index = Random.Range(0, prefabs.Count);
             return prefabs[index];
         }
 
@@ -97,6 +101,7 @@ namespace Controllers
             _visualSystems.Execute();
             _combatSystems.Execute();
             _aiSystems.Execute();
+            _collectibleSystems.Execute();
         }
 
         private void OnDestroy()
@@ -107,6 +112,7 @@ namespace Controllers
             _visualSystems.Cleanup();
             _combatSystems.Cleanup();
             _aiSystems.Cleanup();
+            _collectibleSystems.Cleanup();
         }
 
         private Entitas.Systems CreateGameSystems(Contexts contexts)
@@ -118,7 +124,9 @@ namespace Controllers
                 .Add(new RenderDirectionSystem(contexts))
                 .Add(new ReadGroundSensorSystem(contexts))
                 .Add(new HealthSystem(contexts))
-                .Add(new TakeDamageSystem(contexts));
+                .Add(new TakeDamageSystem(contexts))
+                .Add(new HealDamageSystem(contexts))
+                .Add(new RemoveDestroyedObjectsSystem(contexts));
         }
         
         private Entitas.Systems CreateInputSystems(Contexts contexts)
@@ -167,6 +175,16 @@ namespace Controllers
                 .Add(new AIChaseSystem(contexts))
                 .Add(new AIAttackSystem(contexts))
                 .Add(new AIPeaceSystem(contexts));
+        }
+
+        private Entitas.Systems CreateCollectiblesSystems(Contexts contexts)
+        {
+            return new Feature("Collectibles Systems")
+                .Add(new CheckForDropSystem(contexts, _sceneScopeContainer))
+                .Add(new CollectibleSpawnSystem(contexts, _sceneScopeContainer))
+                .Add(new HandleCollectibleTriggeredSystem(contexts))
+                .Add(new HealthCollectiblePickupSystem(contexts))
+                .Add(new MoneyCollectiblePickupSystem(contexts, _sceneScopeContainer));
         }
     }
 }

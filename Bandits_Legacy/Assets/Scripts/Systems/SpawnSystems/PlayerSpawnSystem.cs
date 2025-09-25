@@ -83,7 +83,8 @@ namespace Systems
                 }
 
                 gameEntity.isAttackDelaying = false;
-                gameEntity.AddHitPoints(10);
+                gameEntity.AddMaxHitpoints(10);
+                gameEntity.AddHitPoints(gameEntity.maxHitpoints.Value);
                 gameEntity.isDead = false;
                 entity.Destroy();
             }   

@@ -8,39 +8,57 @@
 //------------------------------------------------------------------------------
 public static class EventsComponentsLookup {
 
-    public const int Enemy = 0;
-    public const int EnemyPrefab = 1;
-    public const int EnemySpawnRequested = 2;
-    public const int Player = 3;
-    public const int PlayerPrefab = 4;
-    public const int PlayerSpawnRequested = 5;
-    public const int Position = 6;
-    public const int PowerUp = 7;
-    public const int PowerUpPrefab = 8;
+    public const int Collectible = 0;
+    public const int CollectiblePrefab = 1;
+    public const int CollectibleSpawnRequested = 2;
+    public const int CollectibleType = 3;
+    public const int CollectibleValue = 4;
+    public const int DropCheckRequested = 5;
+    public const int Enemy = 6;
+    public const int EnemyPrefab = 7;
+    public const int EnemySpawnRequested = 8;
+    public const int HealthCollectibleTriggered = 9;
+    public const int MoneyCollectibleTriggered = 10;
+    public const int Player = 11;
+    public const int PlayerPrefab = 12;
+    public const int PlayerSpawnRequested = 13;
+    public const int Position = 14;
 
-    public const int TotalComponents = 9;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
+        "Collectible",
+        "CollectiblePrefab",
+        "CollectibleSpawnRequested",
+        "CollectibleType",
+        "CollectibleValue",
+        "DropCheckRequested",
         "Enemy",
         "EnemyPrefab",
         "EnemySpawnRequested",
+        "HealthCollectibleTriggered",
+        "MoneyCollectibleTriggered",
         "Player",
         "PlayerPrefab",
         "PlayerSpawnRequested",
-        "Position",
-        "PowerUp",
-        "PowerUpPrefab"
+        "Position"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(CollectibleComponent),
+        typeof(CollectiblePrefabComponent),
+        typeof(CollectibleSpawnRequestedComponent),
+        typeof(CollectibleTypeComponent),
+        typeof(CollectibleValueComponent),
+        typeof(DropCheckRequested),
         typeof(EnemyComponent),
         typeof(EnemyPrefabComponent),
         typeof(EnemySpawnRequestedComponent),
+        typeof(HealthCollectibleTriggered),
+        typeof(MoneyCollectibleTriggered),
         typeof(PlayerComponent),
         typeof(PlayerPrefabComponent),
         typeof(PlayerSpawnRequestedComponent),
-        typeof(PositionComponent),
-        typeof(PowerUpComponent),
-        typeof(PowerUpPrefabComponent)
+        typeof(PositionComponent)
     };
 }

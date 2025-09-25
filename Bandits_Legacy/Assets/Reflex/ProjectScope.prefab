@@ -61,3 +61,7 @@ MonoBehaviour:
   _enemyPrefabsList:
   - {fileID: 9116217822506182111, guid: ec6a4331d9ef77b40bf3751a0e558d4b, type: 3}
   - {fileID: 7321922730368011615, guid: d6ac691817149004fae5bdfa9f5dc3c8, type: 3}
+  _collectiblePrefabsList:
+  - {fileID: 5056668922236117312, guid: 4be9067172ba80943ad95dc9c9d304d5, type: 3}
+  - {fileID: 872261852937553356, guid: d3f107f6a697d3b4fa1156ef9a36d5ad, type: 3}
+  - {fileID: 3692891197956879519, guid: ef2fd0aceb0db4841b2e78471fc3a963, type: 3}

@@ -24,7 +24,12 @@ public sealed class EnemyPrefabComponent : IComponent
 }
 
 [Events]
-public sealed class PowerUpPrefabComponent : IComponent
+public sealed class CollectiblePrefabComponent : IComponent
 {
-    public PowerUp Value;
+    public Collectible Value;
+}
+
+[Events]
+public sealed class CollectibleSpawnRequestedComponent : IComponent
+{
 }

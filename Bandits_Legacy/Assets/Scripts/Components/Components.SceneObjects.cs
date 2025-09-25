@@ -14,7 +14,7 @@ public sealed class EnemyComponent : IComponent
 }
 
 [Game, Events]
-public sealed class PowerUpComponent : IComponent
+public sealed class CollectibleComponent : IComponent
 {
 }
 
@@ -45,4 +45,24 @@ public sealed class RigidBody2DComponent : IComponent
 public sealed class GroundSensorComponent : IComponent
 {
     public GroundSensor Value;
+}
+
+[Game]
+public sealed class MarkedToDestroy : IComponent
+{
+}
+
+[Game]
+public sealed class CollectibleTriggerEntered : IComponent
+{
+}
+
+[Events]
+public sealed class HealthCollectibleTriggered : IComponent
+{
+}
+
+[Events]
+public sealed class MoneyCollectibleTriggered : IComponent
+{
 }
