@@ -20,7 +20,6 @@ namespace Utils.Randomizers
         public Collectible RandomizeDrop()
         {
             var chance = Random.Range(0f, 1f);
-            Debug.Log($"Chance of drop is {chance:F}");
             var collectibleType = RandomizeType();
             var collectibles = _prefabs.FindAll(c => c.CollectibleType == collectibleType);
             Collectible collectibleToDrop = null;
@@ -43,7 +42,6 @@ namespace Utils.Randomizers
         {
             var typesCount = Enum.GetNames(typeof(CollectibleTypeEnum)).Length;
             var result = (CollectibleTypeEnum)Random.Range(0, typesCount);
-            Debug.Log($"Expected drop type is {result.ToString()}");
             return result;
         }
     }

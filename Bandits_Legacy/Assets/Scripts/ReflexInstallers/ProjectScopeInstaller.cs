@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Controllers;
 using Core;
 using Reflex.Core;
+using UI.Presenters;
 using UnityEngine;
 using Utils.Randomizers;
 
@@ -23,6 +25,8 @@ namespace ReflexInstallers
             containerBuilder.AddSingleton(_enemyPrefabsList);
             containerBuilder.AddSingleton(new CollectibleDropRandomizer(_collectiblePrefabsList));
             containerBuilder.AddSingleton(new MoneyStorage());
+            containerBuilder.AddSingleton(typeof(MoneyPresenter), typeof(IMoneyPresenter));
+            containerBuilder.AddSingleton(typeof(HitPointsPresenter), typeof(IHitPointsPresenter));
         }
     }
 }

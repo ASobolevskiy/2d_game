@@ -11,18 +11,21 @@ public static class InputComponentsLookup {
     public const int AttackInput = 0;
     public const int JumpInput = 1;
     public const int MoveInput = 2;
+    public const int OpenMenu = 3;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 4;
 
     public static readonly string[] componentNames = {
         "AttackInput",
         "JumpInput",
-        "MoveInput"
+        "MoveInput",
+        "OpenMenu"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AttackInputComponent),
         typeof(JumpInputComponent),
-        typeof(MoveInputComponent)
+        typeof(MoveInputComponent),
+        typeof(OpenMenuComponent)
     };
 }

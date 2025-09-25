@@ -23,15 +23,21 @@ public partial class Contexts : Entitas.IContexts {
 
     public EventsContext events { get; set; }
     public GameContext game { get; set; }
+    public GameCycleContext gameCycle { get; set; }
     public InputContext input { get; set; }
+    public SaveLoadContext saveLoad { get; set; }
+    public UIContext uI { get; set; }
     public VisualContext visual { get; set; }
 
-    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { events, game, input, visual }; } }
+    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { events, game, gameCycle, input, saveLoad, uI, visual }; } }
 
     public Contexts() {
         events = new EventsContext();
         game = new GameContext();
+        gameCycle = new GameCycleContext();
         input = new InputContext();
+        saveLoad = new SaveLoadContext();
+        uI = new UIContext();
         visual = new VisualContext();
 
         var postConstructors = System.Linq.Enumerable.Where(
@@ -69,7 +75,10 @@ public partial class Contexts {
         try {
             CreateContextObserver(events);
             CreateContextObserver(game);
+            CreateContextObserver(gameCycle);
             CreateContextObserver(input);
+            CreateContextObserver(saveLoad);
+            CreateContextObserver(uI);
             CreateContextObserver(visual);
         } catch(System.Exception e) {
             UnityEngine.Debug.LogError(e);

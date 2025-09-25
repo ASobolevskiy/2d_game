@@ -6,11 +6,13 @@ namespace Systems.Health
 {
     public sealed class HealthSystem : ReactiveSystem<GameEntity>
     {
-        private EventsContext _eventsContext;
+        private readonly EventsContext _eventsContext;
+        private readonly UIContext _uiContext;
         
         public HealthSystem(Contexts contexts) : base(contexts.game)
         {
             _eventsContext = contexts.events;
+            _uiContext = contexts.uI;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -32,6 +34,10 @@ namespace Systems.Health
         {
             foreach (var entity in entities)
             {
+                if(entity.isPlayer)
+                {
+                    _uiContext.ReplacePlayerHitPoints(entity.hitPoints.Value);
+                }
                 if (entity.hitPoints.Value > 0) 
                     continue;
                 if (entity.isEnemy)

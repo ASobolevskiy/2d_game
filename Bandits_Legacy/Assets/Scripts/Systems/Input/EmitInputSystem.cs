@@ -11,6 +11,8 @@ namespace Systems.Input
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private InputAction _attackAction;
+        private InputAction _openMenuAction;
+        private InputAction _cancelAction;
         
         public void Initialize()
         {
@@ -18,6 +20,8 @@ namespace Systems.Input
             _moveAction = InputSystem.actions.FindAction("Move");
             _jumpAction = InputSystem.actions.FindAction("Jump");
             _attackAction = InputSystem.actions.FindAction("Attack");
+            _openMenuAction = InputSystem.actions.FindAction("ToggleMenu");
+            //_cancelAction = InputSystem.actions.FindAction("Cancel");
             SetupInputCallbacks();
         }
 
@@ -31,6 +35,12 @@ namespace Systems.Input
 
             _attackAction.performed += OnAttackPerformed;
             _attackAction.canceled += OnAttackCancelled;
+
+            _openMenuAction.performed += OnOpenMenuPerformed;
+            //_openMenuAction.canceled += OnOpenMenuCanceled;
+
+            // _cancelAction.performed += OnOpenMenuPerformed;
+            // _cancelAction.canceled += OnOpenMenuCanceled;
         }
 
         private void OnMove(InputAction.CallbackContext ctx)
@@ -63,11 +73,25 @@ namespace Systems.Input
         {
             OnAttack(false);
         }
-
-
+        
         private void OnAttack(bool state)
         {
             _context.ReplaceAttackInput(state);
+        }
+        
+        private void OnOpenMenuPerformed(InputAction.CallbackContext obj)
+        {
+            OnOpenMenu(true);
+        }
+        
+        private void OnOpenMenuCanceled(InputAction.CallbackContext obj)
+        {
+            OnOpenMenu(false);
+        }
+
+        private void OnOpenMenu(bool state)
+        {
+            _context.ReplaceOpenMenu(state);
         }
 
         public void Cleanup()

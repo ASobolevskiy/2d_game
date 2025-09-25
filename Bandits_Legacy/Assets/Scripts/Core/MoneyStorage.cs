@@ -1,12 +1,16 @@
+using UniRx;
+
 namespace Core
 {
-    public class MoneyStorage
+    public sealed class MoneyStorage
     {
-        private int _money;
+        public IReadOnlyReactiveProperty<long> Money => _money;
+        
+        private readonly ReactiveProperty<long> _money = new LongReactiveProperty();
 
         public void AddMoney(int amount)
         {
-            _money += amount;
+            _money.Value += amount;
         }
     }
 }

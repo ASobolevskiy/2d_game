@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core;
+using Entitas;
 using Reflex.Attributes;
 using Reflex.Core;
 using Reflex.Extensions;
@@ -8,9 +9,11 @@ using Systems;
 using Systems.AI;
 using Systems.Collectibles;
 using Systems.Combat;
+using Systems.GameCycle;
 using Systems.Health;
 using Systems.Input;
 using Systems.Movement;
+using Systems.UI;
 using Systems.Utility;
 using Systems.Visual.Animation;
 using UnityEngine;
@@ -30,11 +33,11 @@ namespace Controllers
         private Entitas.Systems _combatSystems;
         private Entitas.Systems _aiSystems;
         private Entitas.Systems _collectibleSystems;
+        private Entitas.Systems _uiSystems;
+        private PauseUnpauseSystem _pauseUnpauseSystem;
         
         private bool _isGameOver;
-
-        [Inject]
-        private List<SpawnPoint> _spawnPoints;
+        private bool _onPause;
         
         private void Start()
         {
@@ -51,6 +54,7 @@ namespace Controllers
             _combatSystems = CreateCombatSystems(_contexts);
             _aiSystems = CreateAISystems(_contexts);
             _collectibleSystems = CreateCollectiblesSystems(_contexts);
+            _uiSystems = CreateUISystems(_contexts);
             
             _gameSystems.Initialize();
             _inputSystems.Initialize();
@@ -59,49 +63,62 @@ namespace Controllers
             _combatSystems.Initialize();
             _aiSystems.Initialize();
             _collectibleSystems.Initialize();
+            _uiSystems.Initialize();
 
-            var enemiesPrefabs = _sceneScopeContainer.Resolve<List<Enemy>>();
-            //TODO move to spawner 
-            if (_spawnPoints == null) 
-                return;
-            foreach (var spawnPoint in _spawnPoints)
-            {
-                var position = spawnPoint.Coordinates.position;
-                var eventEntity = _contexts.events.CreateEntity();
-                eventEntity.AddPosition(position);
-                    
-                if (spawnPoint.IsPlayerSpawnPoint)
-                {
-                    //Spawn player
-                    eventEntity.isPlayerSpawnRequested = true;
-                    eventEntity.AddPlayerPrefab(_sceneScopeContainer.Resolve<Player>());
-                }
-                else
-                {
-                    //Spawn enemies
-                    eventEntity.isEnemySpawnRequested = true;
-                    eventEntity.AddEnemyPrefab(GetRandomEnemyPrefab(enemiesPrefabs));
-                }
-            }
+            _pauseUnpauseSystem = new PauseUnpauseSystem(_contexts.gameCycle);
+            _pauseUnpauseSystem.OnPauseRequested += OnPauseRequested;
+
+            var spawnController = new SpawnController(_sceneScopeContainer);
+            spawnController.SpawnUnits();
         }
 
-        private Enemy GetRandomEnemyPrefab(List<Enemy> prefabs)
+        private void OnPauseRequested(bool shouldPause)
         {
-            var index = Random.Range(0, prefabs.Count);
-            return prefabs[index];
+            if(shouldPause)
+                PauseGame();
+            else
+                UnpauseGame();
         }
 
+        private void PauseGame()
+        {
+            _onPause = true;
+            _gameSystems.DeactivateReactiveSystems();
+            _eventSystems.DeactivateReactiveSystems();
+            _visualSystems.DeactivateReactiveSystems();
+            _combatSystems.DeactivateReactiveSystems();
+            _aiSystems.DeactivateReactiveSystems();
+            _collectibleSystems.DeactivateReactiveSystems();
+            Time.timeScale = 0;
+        }
+
+        private void UnpauseGame()
+        {
+            _onPause = false;
+            _gameSystems.ActivateReactiveSystems();
+            _eventSystems.ActivateReactiveSystems();
+            _visualSystems.ActivateReactiveSystems();
+            _combatSystems.ActivateReactiveSystems();
+            _aiSystems.ActivateReactiveSystems();
+            _collectibleSystems.ActivateReactiveSystems();
+            Time.timeScale = 1;
+        }
+        
         private void Update()
         {
-            if (_isGameOver)
-                return;
             _inputSystems.Execute();
+            _uiSystems.Execute();
+            _pauseUnpauseSystem.Execute();
+
+            if (_isGameOver || _onPause) 
+                return;
             _gameSystems.Execute();
             _eventSystems.Execute();
             _visualSystems.Execute();
             _combatSystems.Execute();
             _aiSystems.Execute();
             _collectibleSystems.Execute();
+            
         }
 
         private void OnDestroy()
@@ -113,6 +130,8 @@ namespace Controllers
             _combatSystems.Cleanup();
             _aiSystems.Cleanup();
             _collectibleSystems.Cleanup();
+            _uiSystems.Cleanup();
+            _pauseUnpauseSystem.OnPauseRequested -= OnPauseRequested;
         }
 
         private Entitas.Systems CreateGameSystems(Contexts contexts)
@@ -135,7 +154,8 @@ namespace Controllers
                 .Add(new EmitInputSystem())
                 .Add(new ReadMoveInputSystem(contexts))
                 .Add(new ReadJumpInputSystem(contexts))
-                .Add(new ReadAttackInputSystem(contexts));
+                .Add(new ReadAttackInputSystem(contexts))
+                .Add(new ReadOpenMenuSystem(contexts));
         }
         
         private Entitas.Systems CreateEventsSystems(Contexts contexts)
@@ -185,6 +205,13 @@ namespace Controllers
                 .Add(new HandleCollectibleTriggeredSystem(contexts))
                 .Add(new HealthCollectiblePickupSystem(contexts))
                 .Add(new MoneyCollectiblePickupSystem(contexts, _sceneScopeContainer));
+        }
+
+        private Entitas.Systems CreateUISystems(Contexts contexts)
+        {
+            return new Feature("UI Systems")
+                .Add(new PlayerHitPointsUISystem(contexts, _sceneScopeContainer))
+                .Add(new OpenMenuSystem(contexts, _sceneScopeContainer));
         }
     }
 }

@@ -19,3 +19,9 @@ public sealed class AttackInputComponent : IComponent
 {
     public bool IsPressed;
 }
+
+[Input, Unique]
+public sealed class OpenMenuComponent : IComponent
+{
+    public bool IsPressed;
+}
