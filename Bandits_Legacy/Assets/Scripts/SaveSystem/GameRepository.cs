@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SaveSystem
 {
     public class GameRepository : IGameRepository
     {
         private const string SAVE_FILE_NAME = "GameState.txt";
-        
-        private Dictionary<string, string> gameState = new();
-        
+
+        private readonly Dictionary<string, string> gameState = new();
+
         public bool TryGetData<T>(out T data)
         {
             var key = typeof(T).ToString();
@@ -18,14 +19,16 @@ namespace SaveSystem
             }
 
             var dataJson = gameState[key];
-            //data = JsonConvert.DeserializeObject<T>(dataJson);
+            data = JsonConvert.DeserializeObject<T>(dataJson);
             data = default;
             return true;
         }
 
         public void SetData<T>(T data)
         {
-            throw new System.NotImplementedException();
+            var key = typeof(T).ToString();
+            var dataJson = JsonConvert.SerializeObject(data);
+            gameState[key] = dataJson;
         }
     }
 }
